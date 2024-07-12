@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HyperColor.mainColor,
+      backgroundColor: HyperColor.gardientOne,
       body: Container(
         color: const Color.fromARGB(255, 255, 255, 255),
         child: Center(
