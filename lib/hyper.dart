@@ -18,7 +18,7 @@ class Hyper extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.light,
         buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.accent),
-        primaryColor: HyperColor.mainColor,
+        primaryColor: HyperColor.scafoldBGColor,
         fontFamily: 'Gilroy',
       ),
       routeInformationParser: Modular.routeInformationParser,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hyper/module/home_module.dart';
+import 'package:hyper/module/profile_module.dart';
 import 'package:hyper/route/hpyer_route.dart';
 import 'package:hyper/util/app_logger.dart';
 
@@ -35,8 +36,11 @@ class AppRouter {
     String tempRoute = "";
 
     switch (M) {
-      case HomeModule:
-        tempRoute = MainRoutes.main;
+      case const (HomeModule):
+        tempRoute = HyperRoutes.main;
+        break;
+      case const (ProfileModule):
+        tempRoute = HyperRoutes.profile;
         break;
     }
     logger.e(tempRoute);

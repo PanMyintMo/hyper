@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hyper/colors/hpercolor.dart';
+import 'package:hyper/util/gradient_painter.dart';
 
 Widget hyperSearchAndFilter(
   BuildContext context,
@@ -7,6 +8,14 @@ Widget hyperSearchAndFilter(
 ) {
   final TextEditingController searchController = TextEditingController();
 
+  Gradient gradient = const LinearGradient(
+    colors: [
+      Color.fromARGB(255, 116, 251, 222),
+      Color.fromARGB(255, 23, 26, 121),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
   InputDecoration getInputDecoration() {
     return InputDecoration(
       fillColor: Colors.white10,
@@ -14,18 +23,10 @@ Widget hyperSearchAndFilter(
       contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(
-          color: HyperColor.profileBackgroundColor.withOpacity(0.5),
-          width: 0.5,
-        ),
+        borderSide: BorderSide.none,
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(
-          color: HyperColor.disableBtnColor,
-          width: 0.5,
-        ),
-      ),
+          borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
       hintText: '검색어를 입력하세요',
       hintStyle: const TextStyle(
         color: Colors.grey,
@@ -42,15 +43,18 @@ Widget hyperSearchAndFilter(
   }
 
   return Container(
-    margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
+    margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
     child: Row(
       children: [
         Expanded(
-          child: SizedBox(
-            child: TextField(
-              controller: searchController,
-              cursorColor: HyperColor.gardientOne,
-              decoration: getInputDecoration(),
+          child: GradientBorderWrapper(
+            gradient: gradient,
+            child: SizedBox(
+              child: TextField(
+                controller: searchController,
+                cursorColor: HyperColor.thinBlack,
+                decoration: getInputDecoration(),
+              ),
             ),
           ),
         ),
