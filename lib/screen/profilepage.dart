@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hyper/colors/hpercolor.dart';
 import 'package:hyper/util/custom_drop_down.dart';
@@ -97,8 +96,7 @@ class ProfilePage extends StatelessWidget {
                     ],
                   )
                 : Text(profileArg.name, style: appBarTitleStyle),
-            const SizedBox(height: 5),
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
             Divider(
               thickness: 20,
               color: HyperColor.grey.withOpacity(0.1),

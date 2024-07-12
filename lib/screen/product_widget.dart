@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hyper/colors/hpercolor.dart';
 import 'package:hyper/util/hyperapptextstyle.dart';
 
-class ProductHome extends StatefulWidget {
+class ProductHome extends StatelessWidget {
   final AssetImage image;
   final String title;
   final String description;
   final String subdesc;
   final String desc;
   final String desc2;
-
   final String btnText1;
   final String btnText2;
+
   const ProductHome({
     super.key,
     required this.image,
@@ -25,11 +25,6 @@ class ProductHome extends StatefulWidget {
   });
 
   @override
-  State<ProductHome> createState() => _ProductHomeState();
-}
-
-class _ProductHomeState extends State<ProductHome> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -41,7 +36,7 @@ class _ProductHomeState extends State<ProductHome> {
           Expanded(
             flex: 2,
             child: Image(
-              image: widget.image,
+              image: image,
               fit: BoxFit.contain,
             ),
           ),
@@ -53,133 +48,111 @@ class _ProductHomeState extends State<ProductHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: cardTitleTextStyle),
+                  _buildText(title, style: cardTitleTextStyle),
                   const SizedBox(height: 2),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.fiber_manual_record,
-                        size: 8,
-                      ),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text(widget.description,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: cardDescTextStyle),
-                      ),
-                    ],
-                  ),
+                  _buildInfoRow(description),
                   const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.fiber_manual_record,
-                        size: 8,
-                      ),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text(widget.subdesc,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: cardDescTextStyle),
-                      ),
-                    ],
-                  ),
+                  _buildInfoRow(subdesc),
                   const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.fiber_manual_record,
-                        size: 8,
-                      ),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              const TextSpan(
-                                text: '⭐',
-                              ),
-                              TextSpan(
-                                text: widget.desc,
-                                style: const TextStyle(
-                                    color:
-                                        HyperColor.goldColor), // Rating color
-                              ),
-                              TextSpan(
-                                text: widget.desc2,
-                                style: cardSubDescTextStyle, // Reviews color
-                              ),
-                            ],
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: cardSubDescTextStyle,
-                        ),
-                      )
-                    ],
-                  ),
+                  _buildRatingRow(),
                   const SizedBox(height: 2),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          // print('Pressed: ${widget.btnText1}');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.grey,
-                          minimumSize: Size(20, 30),
-                          backgroundColor: Colors.white, // Text color
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(5), // Rounded corners
-                          ),
-                          side: BorderSide(
-                              color:
-                                  Colors.grey.withOpacity(0.5)), // Border color
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          widget.btnText1,
-                          style: cardbtnTextStyle,
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      ElevatedButton(
-                        onPressed: () {
-                          // print('Pressed: ${widget.btnText2}');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.grey,
-                          minimumSize: const Size(20, 30),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          side: BorderSide(color: Colors.grey.withOpacity(0.5)),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          widget.btnText2,
-                          style: cardbtnTextStyle,
-                        ),
-                      ),
-                    ],
-                  )
+                  _buildButtonRow(),
                 ],
               ),
             ),
           ),
         ],
       ),
-   
-   
     );
- 
- 
+  }
+
+  Widget _buildText(String text, {TextStyle? style}) {
+    return Text(
+      text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: style,
+    );
+  }
+
+  Widget _buildInfoRow(String text) {
+    return Row(
+      children: [
+        const Icon(
+          Icons.fiber_manual_record,
+          size: 8,
+        ),
+        const SizedBox(width: 4),
+        Expanded(
+          child: _buildText(text, style: cardDescTextStyle),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRatingRow() {
+    return Row(
+      children: [
+        const Icon(
+          Icons.fiber_manual_record,
+          size: 8,
+        ),
+        const SizedBox(width: 4),
+        Expanded(
+          child: Text.rich(
+            TextSpan(
+              children: [
+                const TextSpan(
+                  text: '⭐',
+                ),
+                TextSpan(
+                  text: desc,
+                  style: const TextStyle(color: HyperColor.goldColor),
+                ),
+                TextSpan(
+                  text: desc2,
+                  style: cardSubDescTextStyle,
+                ),
+              ],
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: cardSubDescTextStyle,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButton(String text) {
+    return ElevatedButton(
+      onPressed: () {
+        // Handle button press
+      },
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.grey,
+        minimumSize: const Size(20, 30),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        side: BorderSide(color: Colors.grey.withOpacity(0.5)),
+        elevation: 0,
+      ),
+      child: Text(
+        text,
+        style: cardbtnTextStyle,
+      ),
+    );
+  }
+
+  Widget _buildButtonRow() {
+    return Row(
+      children: [
+        _buildButton(btnText1),
+        const SizedBox(width: 5),
+        _buildButton(btnText2),
+      ],
+    );
   }
 }

@@ -22,12 +22,10 @@ class _HyperPageScreenState extends State<HyperPageScreen> {
     super.initState();
   }
 
-
   List<BottomNavigationBarItem> navAdminMenu = [
     const BottomNavigationBarItem(
         icon: Icon(Icons.home), backgroundColor: Colors.blue, label: '홈'),
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.grid_view), label: '카테고리'),
+    const BottomNavigationBarItem(icon: Icon(Icons.grid_view), label: '카테고리'),
     const BottomNavigationBarItem(
         icon: ImageIcon(
           AssetImage('assets/images/btnimg.png'),
@@ -36,7 +34,6 @@ class _HyperPageScreenState extends State<HyperPageScreen> {
     const BottomNavigationBarItem(
         icon: Icon(Icons.account_circle), label: '마이페이지'),
   ];
-
 
   @override
   void dispose() {
